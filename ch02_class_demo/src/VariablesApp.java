@@ -1,4 +1,4 @@
-package ch02_class_demo;
+
 
 public class VariablesApp {
 
