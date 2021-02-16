@@ -5,36 +5,37 @@ import java.util.Scanner;
 public class GuessNumber {
 
 	public static void main(String[] args) {
-		int limit = 100;
-		greeting(limit);
 		String choice = "y";
-		int numberOfGuesses = 0;
+		final int LIMIT = 100;
 		Scanner sc = new Scanner(System.in);
 		while (choice.equalsIgnoreCase("y")) {
-			int nbr = randomNumber(limit);
+			greeting(LIMIT);
+			int nbr = randomNumber(LIMIT);
 			//System.out.println(number);
-			
+			int numberOfGuesses = 0;
 			//int guess = sc.nextInt();
 			int guess = 0;
 					//getIntWithinRange(sc, "Pick a number: ", 1, limit);
 			while (nbr != guess) {
-				guess = getIntWithinRange(sc, "Your guess: ", 1, limit);
+				guess = getIntWithinRange(sc, "Your guess: ", 1, LIMIT + 1);
 				// method that compares guess to nbr and returns a string
 				//print string that gives hint
-				System.out.println(generateHintMessage(guess, nbr));
+				System.out.println(generateHintMessage(guess, nbr, numberOfGuesses));
 				numberOfGuesses++;
 			}
 			//check how close to random number the guess is
 			//once nbr = guess, return a message based on number of guesses
 			evaluationOfSkill(numberOfGuesses);
 			//ask to continue
-			choice = askToContinue(sc);
+			//choice = askToContinue(sc);
+			choice = getChoiceString(sc, "Try again? (y/n)", "y", "n");
 		}
+		System.out.println("Goodbye");
 		sc.close();
 	}
 	// welcome the user
 	private static void greeting(int limit) {
-		System.out.println("Guess the Number Game\nI'm thinking of a number between 1 and " + limit +". Try to guess it.");
+		System.out.println("Guess the Number Game\nI'm thinking of a number between 1 and " + limit +". Try to guess it.\n");
 	}
 	
 	//generate a random number
@@ -76,7 +77,7 @@ public class GuessNumber {
 	}
 	
 	//return hints as to whether its too high, way too high, etc
-	private static String generateHintMessage(int guess, int nbr) {
+	private static String generateHintMessage(int guess, int nbr, int nbrOfGuesses) {
 		String hint = "";
 		if (guess != nbr) {
 			if (guess < nbr) {
@@ -98,7 +99,7 @@ public class GuessNumber {
 			}
 		}
 		else {
-			hint = "You did it!!";
+			hint = "You got it in " + nbrOfGuesses + " amount of tries.";
 		}
 		return hint;
 	}
@@ -107,26 +108,71 @@ public class GuessNumber {
 	//when correct number is found, user is rated on skill
 	// ask to continue when done
 	private static String askToContinue(Scanner sc) {
+		boolean isValid = false;
+		while (!isValid) {
 		System.out.println("Continue? (y/n): ");
+		//should only accept "y" or "n"
+		//if string is not y or n it should erase and have it be asked again
+		
 		String choice = sc.next();
-		sc.nextLine();
+		if (!choice.equalsIgnoreCase("y") && !choice.equalsIgnoreCase("n")){
+			System.out.println("Error! Must select y or n. Try again.");
+			sc.nextLine();
+			continue;
+		}
+		else {
+			//choice = sc.next();
+			isValid = true;
+		}
 		//System.out.println();
-		return choice;
+		
+		}
+		//return choice;
+		return null;
 	}
 	
 	private static void evaluationOfSkill(int guesses) {
 	//take the number of guesses and return a string (or print? idk) based on how many guesses
 		if (guesses <= 3) {
-			System.out.println("Dang u r so good at number guessing");
+			System.out.println(guesses + " guesses, Dang u r so good at number guessing");
 		}
 		else if (guesses <= 7) {
-			System.out.println("You hve potential to be good at this game.");
+			System.out.println(guesses + " guesses, you hve potential to be good at this game.");
 			
 		}
 		else {
-			System.out.println("Wow u suck!!!!! dont quit your day job");
+			System.out.println(guesses + ", wow u suck!!!!! dont quit your day job");
 		}
 	}
+	private static String getRequiredString(Scanner sc, String prompt) {
+        String s = "";
+        boolean isValid = false;
+        while (!isValid) {
+            System.out.print(prompt);
+            s = sc.nextLine();
+            if (s.equals("")) {
+                System.out.println("Error! This entry is required. Try again.");
+            } else {
+                isValid = true;
+            }
+        }
+        return s;
+    }
+    private static String getChoiceString(Scanner sc, String prompt,
+            String s1, String s2) {
+        String s = "";
+        boolean isValid = false;
+        while (!isValid) {
+            s = getRequiredString(sc, prompt);
+            if (!s.equalsIgnoreCase(s1) && !s.equalsIgnoreCase(s2)) {
+                System.out.println("Error! Entry must be '" + s1 + "' or '" + s2 + "'. Try again.");
+            } else {
+                isValid = true;
+            }
+        }
+        return s;
+    }
+
 	
 }
 
