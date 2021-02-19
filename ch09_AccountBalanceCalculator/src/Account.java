@@ -1,29 +1,26 @@
 
 public class Account implements Depositable, Withdrawal, Balanceable {
-	double balance;
+	protected double balance;
 	
 	@Override
 	public double getBalance() {
-		// TODO Auto-generated method stub
-		return 0;
+		return balance;
 	}
 
 	@Override
 	public void setBalance(double amount) {
-		// TODO Auto-generated method stub
+		this.balance = amount;
 
 	}
 
 	@Override
 	public void withdraw(double amount) {
-		// TODO Auto-generated method stub
-
+		balance -= amount;
 	}
 
 	@Override
 	public void deposit(double amount) {
-		// TODO Auto-generated method stub
-
+		balance += amount;
 	}
 
 }
