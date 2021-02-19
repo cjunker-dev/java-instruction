@@ -1,4 +1,10 @@
+package ui;
 import java.text.NumberFormat;
+
+import Account;
+import CheckingAccount;
+import SavingsAccount;
+import util.Console;
 
 public class AccountBalanceApp {
 	static NumberFormat currency = NumberFormat.getCurrencyInstance();
