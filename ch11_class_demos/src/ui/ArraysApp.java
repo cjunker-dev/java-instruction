@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.Arrays;
+
 import business.Product;
 
 public class ArraysApp {
@@ -51,6 +53,31 @@ public class ArraysApp {
 		for  (Product p: products) {
 			System.out.println(p);
 		}
+		
+		
+		//p 365 - sorting
+		for (int i:numbers) {
+			System.out.println(i);
+		}
+		//sort
+		Arrays.sort(numbers);
+		System.out.println("----sorted----");
+		for (int i:numbers) {
+			System.out.println(i);
+		}
+		
+		System.out.println("sort products");
+		for (Product p:products) {
+			System.out.println(p);
+		}
+		//sort
+		Arrays.sort(products);
+		System.out.println("----sorted----");
+		for (Product p: products) {
+			System.out.println(p);
+		}
+		
+		
 		
 		System.out.println("Bye!");
 	}

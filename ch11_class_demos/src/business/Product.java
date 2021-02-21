@@ -3,7 +3,7 @@ package business;
 //pg 217
 //1. Create class
 // Name must match perfectly
-public class Product {
+public class Product implements Comparable {
 	// all physical products need to be classes in Java
 	//2. Set instance variables.
 	private String code;
@@ -57,5 +57,16 @@ public class Product {
 	public String toString() {
 		return "Product [code=" + code + ", description=" + description + ", price=" + price + "]";
 	}
+
+	@Override
+	public int compareTo(Object o) {
+		//compare code to determine sort order
+		
+		Product p = (Product) o;
+		return this.code.compareTo(p.getCode());
+		
+	}
 	
 }
+
+
