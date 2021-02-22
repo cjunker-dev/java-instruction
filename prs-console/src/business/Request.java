@@ -3,16 +3,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Request {
-	int id;
-	int userID;
-	String description;
-	String justification;
-	LocalDate dateNeeded;
-	String deliveryMode;
-	String status;
-	double total;
-	LocalDateTime submittedDate;
-	String reasonForRejection;
+	private int id;
+	private int userID;
+	private String description;
+	private String justification;
+	private LocalDate dateNeeded;
+	private String deliveryMode;
+	private String status;
+	private double total;
+	private LocalDateTime submittedDate;
+	private String reasonForRejection;
+	
 	public Request(int id, int userID, String description, String justification, LocalDate dateNeeded,
 			String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
@@ -29,7 +30,7 @@ public class Request {
 	}
 	
 	public Request() {
-		
+		super();
 	}
 
 	public int getId() {

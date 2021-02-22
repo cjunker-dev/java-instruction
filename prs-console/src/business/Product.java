@@ -1,12 +1,13 @@
 package business;
 public class Product {
-	int id;
-	int vendorID;
-	String partNumber;
-	String name;
-	double price;
-	String unit;
-	String photopath;
+	private int id;
+	private int vendorID;
+	private String partNumber;
+	private String name;
+	private double price;
+	private String unit;
+	private String photopath;
+	
 	public Product(int id, int vendorID, String partNumber, String name, double price, String unit, String photopath) {
 		super();
 		this.id = id;
@@ -19,7 +20,7 @@ public class Product {
 	}
 	
 	public Product() {
-		
+		super();
 	}
 
 	public int getId() {

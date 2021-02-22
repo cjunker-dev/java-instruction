@@ -1,14 +1,15 @@
 package business;
 public class Vendor {
-	int id;
-	String code;
-	String name;
-	String address;
-	String city;
-	String state;
-	String zip;
-	String phoneNumber;
-	String email;
+	private int id;
+	private String code;
+	private String name;
+	private String address;
+	private String city;
+	private String state;
+	private String zip;
+	private String phoneNumber;
+	private String email;
+	
 	public Vendor(int id, String code, String name, String address, String city, String state, String zip,
 			String phoneNumber, String email) {
 		super();
@@ -24,7 +25,7 @@ public class Vendor {
 	}
 	
 	public Vendor() {
-		
+		super();
 	}
 
 	public int getId() {

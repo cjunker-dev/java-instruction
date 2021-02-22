@@ -1,14 +1,16 @@
 package business;
+
 public class User {
-	int id;
-	String username;
-	String password;
-	String firstName;
-	String lastName;
-	String phoneNumber;
-	String email;
-	boolean reviewer;
-	boolean admin;
+	private int id;
+	private String username;
+	private String password;
+	private String firstName;
+	private String lastName;
+	private String phoneNumber;
+	private String email;
+	private boolean reviewer;
+	private boolean admin;
+	
 	public User(int id, String username, String password, String firstName, String lastName, String phoneNumber,
 			String email, boolean reviewer, boolean admin) {
 		super();
@@ -24,7 +26,7 @@ public class User {
 	}
 	
 	public User() {
-		
+		super();
 	}
 
 	public int getId() {

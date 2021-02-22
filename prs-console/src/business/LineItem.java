@@ -1,9 +1,9 @@
 package business;
 public class LineItem {
-	int id;
-	int requestID;
-	int productID;
-	int quantity;
+	private int id;
+	private int requestID;
+	private int productID;
+	private int quantity;
 	public LineItem(int id, int requestID, int productID, int quantity) {
 		super();
 		this.id = id;
@@ -13,7 +13,7 @@ public class LineItem {
 	}
 	
 	public LineItem() {
-		
+		super();
 	}
 
 	public int getId() {
