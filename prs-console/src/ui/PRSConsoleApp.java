@@ -4,23 +4,18 @@ import java.util.Arrays;
 
 import business.Product;
 import business.User;
+import db.DAO;
+import db.UserList;
 import util.Console;
 
 public class PRSConsoleApp {
 	
-	private static User[] users;
+	private static DAO<User> userDAO = new UserList();
 	
 	public static void main(String[] args) {
 		//define static instance variable to store a list of users
-		//User[][] userList = new User[1];
-		User user1 = new User(1, "dallison", "friendship98", "David", "Allison", "5135134544",
-				"dallison@gmail.com", false, false);
-		User user2 = new User(2, "cjunker", "happiness23", "Celina", "Junker", "5135180986",
-				"cjunker@gmail.com", true, true);
-		User user3 = new User(3, "hlingle", "papasmurf", "Hank", "Lingle", "5135189999",
-				"hanklingle@gmail.com", false, true);
-		
-		User[] userList = {user1, user2, user3};
+
+		//User[] userList = {user1, user2, user3};
 		System.out.println("Welcome to the PRS Console App!");
 		System.out.println("This app mimics the functionality we will be creating in the capstone.");
 		System.out.println("Pick from one of the menu items below.");
@@ -29,18 +24,26 @@ public class PRSConsoleApp {
 		while (!(choice == 99)) {	
 			//System.out.println("Menu:\n=================\n1)\tList Users\n2)\tAdd User\n99)\tExit");
 			// when a user picks list users
-			System.out.println("Menu:\n=================\n1)\tList Users\n2)\tAdd User\n99)\tExit");
+			System.out.println("Menu:\n=================\n1)\tList Users\n2)\tAdd User\n3\tFind user\n99)\tExit");
 			choice = Console.getInt("Command: ", 0, 100);
-			if (choice == 1) {
+		switch(choice) {	
+		case 1:
+				if (userDAO.getAll().isEmpty()) {
+					System.out.println("List is empty, add some users!");
+				}
+				//and an if block for null (userDAO.getAll().isEmpty())
+				else {
 				System.out.println("User List");
 				System.out.println("ID\tUsername\tPassword\tFirstName\tLastName\tPhoneNumber\tEmail\tReviewer\tAdmin");
-				for (User u : userList) {
+				for (User u : userDAO.getAll()) {
 					System.out.println(u.toString());
 				}
-			}
+				}
+				break;
+			
 			//use setters and console prompts to set account
 			//also you need to make a new array and copy the other users to it
-			else if (choice == 2) {
+			case 2:
 				int id = Console.getInt("ID: ");
 				boolean reviewer = false;
 				boolean admin = false;
@@ -57,22 +60,30 @@ public class PRSConsoleApp {
 				
 				
 				User u = new User(id, username, password, firstName, lastName, phoneNumber, email, reviewer, admin);
+				userDAO.add(u);
 				System.out.println(u.toString());
 				// add to list		
-				userList = Arrays.copyOf(userList, (userList.length));
-				userList[userList.length - 1] = u;
+				break;
 				
+			
+			case 3:
+				id = Console.getInt("User ID to retrieve? ", 0, Integer.MAX_VALUE);
+				User user = userDAO.getById(id);
+				if (user != null) {
+					System.out.println("User found!!!");
+					System.out.println(user);
+				}
+				else {
+					System.out.println("No user found for id: " + id);
+				break;
+				}
 			}
 		}
 		System.out.println("Bye");
 	}
-
-	private static void addUserToList(User u){
-		
-	}
 	
 	
-	}
+}
 	
 
 
