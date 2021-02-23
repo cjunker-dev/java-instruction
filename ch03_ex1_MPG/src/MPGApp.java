@@ -18,7 +18,7 @@ public class MPGApp {
             System.out.print("Enter gallons of gas used: ");
             double gallons = sc.nextDouble();
             
-            double mpg = miles/gallons;
+            //double mpg = miles/gallons;
            // big decimal
             BigDecimal milesBD = new BigDecimal(miles);
             BigDecimal gallonsBD = new BigDecimal(gallons);

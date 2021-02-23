@@ -21,7 +21,7 @@ public class TipCalculator {
 			BigDecimal cost = sc.nextBigDecimal();
 			//BigDecimal tip = new BigDecimal(0.0);
 			BigDecimal total = new BigDecimal(0.0);
-			final BigDecimal MAX_TIP = new BigDecimal(26);
+			//final BigDecimal MAX_TIP = new BigDecimal(26);
 			//for (BigDecimal tipPercent = new BigDecimal(15); tipPercent.compareTo(MAX_TIP); tipPercent = tipPercent.add(5)) {// tipPercent < 26; tipPercent+= 5) {
 			NumberFormat percent = NumberFormat.getPercentInstance();
 			NumberFormat currency = NumberFormat.getCurrencyInstance();
