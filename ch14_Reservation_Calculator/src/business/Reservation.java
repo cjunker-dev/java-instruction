@@ -7,11 +7,13 @@ import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 
 public class Reservation {
-	LocalDate ArrivalDate;
-	LocalDate DepartureDate;
-	int numberOfNights;
-	double totalPrice;
-	final double PRICE = 145.00;
+	private LocalDate arrivalDate;
+	private LocalDate departureDate;
+	//private int numberOfNights;
+	//double totalPrice;
+	private static final double NIGHTLY_RATE = 145.00;
+	private DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
+	private NumberFormat currency = NumberFormat.getCurrencyInstance();
 
 	
 	
@@ -21,53 +23,50 @@ public class Reservation {
 
 	public Reservation(LocalDate arrivalDate, LocalDate departureDate) {
 		super();
-		ArrivalDate = arrivalDate;
-		DepartureDate = departureDate;
+		this.arrivalDate = arrivalDate;
+		this.departureDate = departureDate;
 		//mathy stuff - figure out num of days and total price
 	}
 	
 	public LocalDate getArrivalDate() {
-		return ArrivalDate;
+		return arrivalDate;
 	}
 	public String getArrivalDateFormatted() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
-		return dtf.format(getArrivalDate());
+		return dtf.format(arrivalDate);
 	}
 	public void setArrivalDate(LocalDate arrivalDate) {
-		ArrivalDate = arrivalDate;
+		this.arrivalDate = arrivalDate;
 	}
 	public LocalDate getDepartureDate() {
-		return DepartureDate;
+		return departureDate;
 	}
 	public String getDepartureDateFormatted() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
-		return dtf.format(getDepartureDate());
+		return dtf.format(departureDate);
 	}
 	public void setDepartureDate(LocalDate departureDate) {
-		DepartureDate = departureDate;
+		this.departureDate = departureDate;
 	}
 	public int getNumberOfNights() {
-		int numDays = (int)ChronoUnit.DAYS.between(ArrivalDate, DepartureDate);
+		int numDays = (int)ChronoUnit.DAYS.between(arrivalDate, departureDate);
 		return numDays;
 	}
-	public double getTotalPrice(double price) {
-		return this.getNumberOfNights() * price;
+	public double getTotalPrice() {
+		return getNumberOfNights() * NIGHTLY_RATE;
 	}
-	public double getTotalPriceFormatted() {
-		NumberFormat currency = NumberFormat.getCurrencyInstance();
-		
+	public String getTotalPriceFormatted() {		
 		//this seems like the wrong way to do it!!!
-		return getNumberOfNights() * PRICE;
+		//return getNumberOfNights() * NIGHTLY_RATE;
+		return currency.format(getTotalPrice());
 	}
-	public double getPricePerNightFormatted() {
-		NumberFormat currency = NumberFormat.getCurrencyInstance();
+	public String getPricePerNightFormatted() {
 		//formattedPrice = currency.format(formattedPrice);
-		double formattedPrice = PRICE;
-		return formattedPrice;
+		//double formattedPrice = NIGHTLY_RATE;
+		//return formattedPrice;
+		return currency.format(NIGHTLY_RATE);
 	}
 	
 	public double getPrice() {
-		return PRICE;
+		return NIGHTLY_RATE;
 	}
 	
 }
