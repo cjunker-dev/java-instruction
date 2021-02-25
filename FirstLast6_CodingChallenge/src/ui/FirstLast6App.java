@@ -14,7 +14,6 @@ public class FirstLast6App {
 	}
 	
 	public static boolean firstLast6(int[] nums) {
-		//if get last isn't a six, try the getfirst
 		int first = nums[0];
 		int last = nums[nums.length - 1];
 		if (first == 6 || last == 6) {
