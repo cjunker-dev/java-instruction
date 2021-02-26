@@ -1,0 +1,9 @@
+1	Dune	PG-13	1984	David Lynch
+2	The Wind in the Willows	G	1995	Dave Unwin
+3	Eraserhead	NR	1977	David Lynch
+4	Harry Potter and the Sorcerer's Stone	PG	2001	Chris Columbus
+100	Indiana Jones and the Raiders of the Lost Ark	PG	1981	Steven Spielberg
+101	Sixteen Candles	PG	1984	John Hughes
+102	Full Metal Jacket	R	1987	Stanley Kubrick
+103	The Big Lebowski	R	1998	Joel Coen
+104	A Clockwork Orange	R	1971	Stanley Kubrick
