@@ -15,6 +15,14 @@ public class Movie {
 		this.year = year;
 		this.director = director;
 	}
+	
+	public Movie(String title, String rating, int year, String director) {
+		super();
+		this.title = title;
+		this.rating = rating;
+		this.year = year;
+		this.director = director;
+	}
 
 	public Movie() {
 		super();
