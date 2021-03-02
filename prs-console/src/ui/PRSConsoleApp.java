@@ -6,13 +6,14 @@ import java.util.Arrays;
 import business.Product;
 import business.User;
 import db.DAO;
+import db.UserDB;
 import db.UserList;
 import db.UserTextFile;
 import util.Console;
 
 public class PRSConsoleApp {
 
-	private static DAO<User> userDAO = new UserTextFile();
+	private static DAO<User> userDAO = new UserDB();
 
 	public static void main(String[] args) {
 		// define static instance variable to store a list of users
@@ -27,7 +28,7 @@ public class PRSConsoleApp {
 			// System.out.println("Menu:\n=================\n1)\tList Users\n2)\tAdd
 			// User\n99)\tExit");
 			// when a user picks list users
-			System.out.println("Menu:\n=================\n1)\tList Users\n2)\tAdd User\n3\tFind user\n99)\tExit");
+			System.out.println("Menu:\n=================\n1)\tList Users\n2)\tAdd User\n3)\tFind user\n4)\tDelete user\n99)\tExit");
 			choice = Console.getInt("Command: ", 0, 100);
 			switch (choice) {
 			case 1:
@@ -52,7 +53,7 @@ public class PRSConsoleApp {
 			// use setters and console prompts to set account
 			// also you need to make a new array and copy the other users to it
 			case 2:
-				int id = Console.getInt("ID: ");
+				//int id = Console.getInt("ID: ");
 				boolean reviewer = false;
 				boolean admin = false;
 				String username = Console.getString("Username: ");
@@ -66,22 +67,36 @@ public class PRSConsoleApp {
 				reviewer = (isReviewer.equalsIgnoreCase("y")) ? true : false;
 				admin = (isAdmin.equalsIgnoreCase("y")) ? true : false;
 
-				User u = new User(id, username, password, firstName, lastName, phoneNumber, email, reviewer, admin);
+				User u = new User(username, password, firstName, lastName, phoneNumber, email, reviewer, admin);
 				userDAO.add(u);
-				System.out.println(u.toString());
+				//System.out.println(u.toString());
+				System.out.println("User successfully added.");
 				// add to list
 				break;
 
 			case 3:
-				id = Console.getInt("User ID to retrieve? ", 0, Integer.MAX_VALUE);
+				int id = Console.getInt("User ID to retrieve? ", 0, Integer.MAX_VALUE);
 				User user = userDAO.getById(id);
 				if (user != null) {
 					System.out.println("User found!!!");
 					System.out.println(user);
+					
 				} else {
 					System.out.println("No user found for id: " + id);
-					break;
+					
 				}
+				break;
+			case 4: 
+				id = Console.getInt("User ID to delete?: ", 0, Integer.MAX_VALUE);
+				user = userDAO.getById(id);
+				if (user != null) {
+					userDAO.delete(user);
+					System.out.println("User successfully deleted!");
+				}
+				else {
+					System.out.println("Invalid user ID.");
+				}
+				break;
 			}
 		}
 		System.out.println("Bye");

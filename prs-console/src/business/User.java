@@ -24,7 +24,18 @@ public class User {
 		this.reviewer = reviewer;
 		this.admin = admin;
 	}
-	
+	public User(String username, String password, String firstName, String lastName, String phoneNumber,
+			String email, boolean reviewer, boolean admin) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.reviewer = reviewer;
+		this.admin = admin;
+	}
 	public User() {
 		super();
 	}
