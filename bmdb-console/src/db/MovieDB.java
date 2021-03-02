@@ -121,5 +121,24 @@ public class MovieDB implements DAOUploadable<Movie> {
 		// not yet implemented
 		return false;
 	}
+	
+	public List<Movie> getMoviesByYear(int year){
+		List<Movie> movies = new ArrayList<>();
+		String sql = "select * from movie where year = ?";
+		try (Connection conn = getConnection();
+				 PreparedStatement ps = conn.prepareStatement(sql)) {
+					ps.setInt(1, year);
+					ResultSet rs = ps.executeQuery();
+					while (rs.next()) {
+						Movie m = getMovieFromResultSet(rs);
+						movies.add(m);
+			}
+		} catch (SQLException e) {
+		System.err.println("Error getting all movies.");
+		e.printStackTrace();
+	}
+	
+	return movies;
 
-}
+	}
+	}

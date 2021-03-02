@@ -40,12 +40,6 @@ public class ActorDB implements DAOUploadable<Actor> {
 			System.out.println("Error with finding actor by id.");
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
 		return a;
 	}
 
@@ -62,7 +56,7 @@ public class ActorDB implements DAOUploadable<Actor> {
 					actors.add(a);
 				}
 			} catch (SQLException e) {
-				System.err.println("Error getting all movies.");
+				System.err.println("Error getting all actors.");
 				e.printStackTrace();
 			}
 			

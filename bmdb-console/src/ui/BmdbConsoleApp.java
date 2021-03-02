@@ -28,6 +28,7 @@ public class BmdbConsoleApp {
 			System.out.println("show   - show all movies");
 			System.out.println("add    - add a movie");
 			System.out.println("get    - get a movie by id");
+			System.out.println("gety - get all movies released in a certain year");
 			System.out.println("del    - delete a movie by id");
 			System.out.println("upload - bulk add files");
 			System.out.println("exit   - exit app");
@@ -36,7 +37,7 @@ public class BmdbConsoleApp {
 			System.out.println("geta - get an actor by id");
 			System.out.println("dela - delete an actor");
 			String[] validEntries = {"show", "add", "exit", "get", "del", "upload", 
-					"showa","adda", "geta", "dela"};
+					"showa","adda", "geta", "dela", "gety"};
 			command = Console.getChoiceString("Command: ", validEntries);
 			switch (command) {
 			case "show":
@@ -84,6 +85,23 @@ public class BmdbConsoleApp {
 					System.out.println("Invalid movie ID.");
 				}
 				break;
+			case "gety":
+				System.out.println("Get all movies released in a year:");
+				System.out.println("============");
+				year = Console.getInt("Year: ", 0, Integer.MAX_VALUE);
+				movies = ((MovieDB) movieDAO).getMoviesByYear(year);
+				
+				if (movies.size() != 0) {
+					System.out.println("Movie List for " +year+":");
+					System.out.println("===========");
+					for (Movie movieByYear: movies) {
+						System.out.println(movieByYear);
+					}
+				}
+				else {
+					System.out.println("Movie file empty");
+				}
+				break;	
 			case "del":
 				System.out.println("Delete a Movie");
 				System.out.println("==============");
