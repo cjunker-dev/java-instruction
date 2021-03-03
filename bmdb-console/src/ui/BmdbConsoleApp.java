@@ -1,24 +1,17 @@
 package ui;
 
 import java.io.*;
-import java.nio.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import util.Console;
-import business.Actor;
-import business.Movie;
-import db.ActorDB;
-import db.DAO;
-import db.DAOUploadable;
-import db.MovieDB;
-import db.MovieTextFile;
+import business.*;
+import db.*;
 
 public class BmdbConsoleApp {
+	private static UserDB userDB = new UserDB();
 	private static DAOUploadable<Movie> movieDAO = new MovieDB();
 	private static DAOUploadable<Actor> actorDAO = new ActorDB();
+	
 	public static void main(String[] args) throws IOException {
 		System.out.println("Welcome to the Bootcamp Movie Database!");
 		String command = "";
@@ -36,8 +29,9 @@ public class BmdbConsoleApp {
 			System.out.println("adda - add actor");
 			System.out.println("geta - get an actor by id");
 			System.out.println("dela - delete an actor");
+			System.out.println("login - user login");
 			String[] validEntries = {"show", "add", "exit", "get", "del", "upload", 
-					"showa","adda", "geta", "dela", "gety"};
+					"showa","adda", "geta", "dela", "gety", "login"};
 			command = Console.getChoiceString("Command: ", validEntries);
 			switch (command) {
 			case "show":
@@ -178,6 +172,22 @@ public class BmdbConsoleApp {
 				else {
 					System.out.println("Invalid actor ID.");
 				}
+				break;
+			case "login":
+				System.out.println("Login");
+				System.out.println("=====");
+				String un = Console.getRequiredString("Username: ");
+				String pwd = Console.getRequiredString("Password: ");
+				User authenticatedUser = userDB.login(un, pwd);
+				if (authenticatedUser == null) {
+					System.out.println("Invalid login!");
+				}
+				else {
+					System.out.println("Successful login! Welcome, " 
+				+authenticatedUser.getFirstName() + "!");
+				}
+				
+				
 				break;
 			case "exit":
 				break;
