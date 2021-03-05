@@ -65,6 +65,7 @@ public class HangManGame {
 	}
 
 	public static void fillInLines(String[] word) {
+		//somehow need to parse through the word or something??????? IDK!!
 		for (String g : word) {
 			System.out.print("_ ");
 		}
